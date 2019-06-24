@@ -1,0 +1,89 @@
+.filterButtons{
+	display: flex;
+	padding: 10px;
+	color: white;
+	min-width: 300px;
+}
+.Fleft{
+	text-align: left;
+}
+.Fright{
+	flex: 1;
+	text-align: right;
+}
+img{
+	width: 70px;
+	height: 70px;
+}
+
+select{
+	margin: 0;
+}
+.userlist,.refresh, .filterButtons select{
+	background-color: rgb(45,49,44);
+	display: inline-block;
+	color: white;
+}
+.filterButtons select{
+	min-width: 70px;
+	width: 10%;
+}
+.userlist{
+	border-radius: 5px;
+	box-shadow: 1px 1px 10px rgb(154,154,154);
+}
+.userlist,.refresh{
+	padding: 5px 10px;
+	cursor: pointer;
+}
+.CId{
+	display: none;
+}
+select, input{
+	padding: 5px 8px;
+	border-radius: 3px;
+	border: 1px solid rgba(0,0,0,0.3);
+	margin-bottom: 20px;
+}
+.textBox{
+	padding: 7px 9px;
+	font-size: 17px;
+	box-sizing: border-box;
+	width: 100%;
+	border: 1px solid #b3b3b3;
+	border-radius: 3px;
+	margin: 10px 0px 10px 0px;
+}
+.Users{
+	margin-top: 25px;
+}
+#showUsers{
+	background-color: rgb(51,122,183);
+}
+#showUsers > i, #showUsers > span{
+	color: white;
+}
+.actions{
+	min-width: 100px;
+}
+.icon{
+	width: 35px;
+	height: 35px;
+	text-align: center;
+	padding-top: 10px;
+	box-sizing: border-box;
+	/*background-color: pink;*/
+	margin: 0px 5px;
+}
+.pic{
+	text-align: center;
+}
+i.fa-edit, i.fa-info{
+	background-color: #333;
+	color: white;
+}
+@media screen and (max-width: 950px) {
+	.userImg{
+		display: none;
+	}
+}

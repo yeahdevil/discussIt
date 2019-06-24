@@ -1,0 +1,42 @@
+<%-include('header')%>
+<%if(data.role=="admin"){if(data.tempRole=="user"){%>
+<%-include('sidebarSwitch')%>
+<%}else{%>
+<%-include('sidebar')%>
+<%}}else if(data.role=="community builder"){%>
+<%-include('./communityBuilder/sidebar')%>
+<%}%>
+<%-include('navbar')%>
+<div class="container-fluid">
+<div class="container" style="width:30%;">
+      <br><br><br>
+    <h4 >Update you info</h4><br>
+     <div style="border:0px solid black" class="imgsize" >
+               <img class="imgsize" style="display:inline-block" src="<%=data.profile%>">
+               
+        </div><br>
+
+    <form action="/firstLogin" method="post" enctype='multipart/form-data'>
+     <div class="custom-file">
+    <input type="file" class="custom-file-input" name="profilePhoto"id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"><br>
+    <label class="custom-file-label" for="inputGroupFile01">Edit Profile photo</label><br>
+    </div>
+    <span>Name</span><br>
+    <input type="text" value="<%=data.username%>" required="" name="username" class="form-control" id="fullname" placeholder="Name" autocomplete="off"><br>
+    <span>Email</span><br>
+    <input type="email" value="<%=data.email%>" required="" name="email" class="form-control" id="fullname" placeholder="email" autocomplete="off"><br>
+    <span>Phone</span><br>
+    <input type="number" value="<%=data.phone%>" required="" name="phone" class="form-control" maxlength="10" id="phone" placeholder="Phone" autocomplete="off"><br>
+    <span>City</span><br>
+    <input type="text" value="<%=data.city%>" required="" name="city" class="form-control" placeholder="City" autocomplete="false"><br>
+    <span>DOB</span><br>
+    <input type="date" value="<%=data.dob%>" required="" name="dob" class="form-control" placeholder="City" autocomplete="false"><br>
+    <span>Gender</span><br>
+    <input type="text" value="<%=data.gender%>" required="" name="gender" class="form-control" placeholder="City" autocomplete="false"><br>
+    <div class="form-group">
+    <input type="submit" value="Update info"  class="btn btn-success">
+              </div>
+              </form>
+    </div>
+</div>
+<%-include('footer')%>

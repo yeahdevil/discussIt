@@ -1,0 +1,212 @@
+.head{
+	background-color: rgb(51,170,200);
+	display: flex;
+	padding: 10px;
+	padding: 0;
+	height: 50px;
+	text-align: center;
+	width: 100%;
+}
+a{
+	text-decoration: none;
+}
+.Requested{
+	opacity: 0.8;
+	cursor: default;
+}
+.heading a:hover ,.communityName a:hover{
+	text-decoration: underline;
+}
+.heading a:active ,.communityName a:active{
+	color: #333;
+	text-decoration: none;
+}
+.community, .manageCommunity, .editCommunity{
+	width: 1170px;
+	max-width: 90%;
+	margin: auto;
+}
+.community{
+	display: flex;
+	/*align-items: center;*/
+	align-items: center;
+	padding-bottom: 10px;
+}
+.image{
+	width: 100px;
+	position: relative;
+	display: inline-block;
+	height: 70px;
+}
+.image > img{
+	width: 100px;
+	height: 100px;
+	top: -30px;
+	left: 0;
+	border: 3px solid white;
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+	position: absolute;
+}
+.communityName{
+	flex: 5;
+	text-align: left;
+}
+.communityName, .moredetail{
+	padding: 15px 30px; 
+}
+.communityName > a{
+	font-size: 25px;
+	color: rgb(51,122,183);
+}
+.communityName > a:hover{
+	text-decoration: underline;
+	color: #26658c;
+}
+.communityName > a:active{
+	text-decoration: none;
+	color: #333;
+}
+.heading{
+	flex: 1;
+	display: none;
+}
+.heading > a{
+	font-size: 17px;
+	color: white;
+}
+.join{
+	flex: 1;
+	display: block;
+	padding: 5px 10px;
+	text-align: right;
+	box-sizing: border-box;
+}
+.join > a{
+	display: inline-block;
+	padding: 8px 12px;
+	border: 1px solid white;
+	background-color: transparent;
+	color: white;
+	margin-right: 20px;
+	cursor: pointer;
+}
+.dropdown{
+	position: relative;
+	display: inline-block;
+}
+.dropdown > i{
+	padding: 12px 15px;
+	border: 3px solid rgb(209,207,207);
+	box-sizing: border-box;
+	background-color: white;
+	cursor: pointer;
+	outline: none;
+}
+.dropdown > ul{
+	list-style: none;
+	width: 200px;
+	box-sizing: border-box;
+	text-align: left;
+	background-color: white;
+	border-radius: 3px;
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	right: 0;
+	margin-top: 2px;
+	border: 2px solid rgb(170,193,247);
+}
+.showdropdown{
+	display: block;
+}
+.hidedropdown{
+	display: none;
+}
+.dropdown > ul > li > a{
+	display: block;
+	text-decoration: none;
+	color: black;
+	padding: 5px 10px;
+	margin: 5px 0px;
+}
+.dropdown > ul > li > a:hover{
+	background-color: #2d6a9f;
+	color: white;
+}
+.dropdown > i:active{
+	box-shadow: inset 0px 0px 20px gray;
+}
+.manageCommunity{
+	padding: 10px;
+	box-sizing: border-box;
+	border-bottom: 1px solid gray;
+	text-align: left;
+}
+.manageCommunity > a{
+	float: right;
+	margin: 0px 10px;
+	text-decoration: none;
+	color: rgb(51,122,183);
+	font-weight: bold;
+}
+.manageCommunity > span{
+	color: rgb(111,110,111);
+	font-weight: bold;
+	font-size: 18px;
+}
+.editCommunity{
+	background-color: white;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 20px;
+	display: none;
+}
+.editCommunity > a{
+	background-color: rgb(51,122,183);
+	text-decoration: none;
+	color: white;
+	border: none;
+	padding: 10px;
+}
+@media (max-width: 950px) {
+	.community{
+		display: block;
+		text-align: center;
+	}
+	.basicDetal{
+		height: 150px;
+	}
+	.head{
+		height: 70px;
+	}
+	.community, .editCommunity, .manageCommunity{
+		max-width: 100%;
+		width: 100%;
+	}
+	.heading{
+		display: block;
+	}
+	.communityName{
+		display: none;
+	}
+	.image{
+		width: 100%;
+		display: block;
+		height: 110px;
+	}
+	.edit{
+		display: none;
+	}
+	.editCommunity{
+		display: block;
+	}
+	.image > img{
+		transform: translateX(-50%);
+		left: 50%;
+	}
+	.join{
+		display: none;
+	}
+}
+
+

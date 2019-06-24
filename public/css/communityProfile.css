@@ -1,0 +1,132 @@
+.profileContainer{
+	display: flex;
+	max-width: 90%;
+	margin: auto;
+	align-items: flex-start;
+	margin-top: 20px;
+	align-items: flex-start;
+}
+.leftConatiner{
+	width: 27%;
+	padding: 0px 15px;
+	box-sizing: border-box;
+}
+.leftConatiner > .joinCommunity, .leftConatiner > .members, .leftConatiner .managers, .communityDetail{
+	border-radius: 5px;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+.leftConatiner > .joinCommunity, .leftConatiner > .members{
+	display: flex;
+	flex-direction: column;
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+	margin-bottom: 20px;
+}
+.joinCommunity > .block1{
+	text-align: center;
+	padding: 20px;
+	background-color: white;
+	box-sizing: border-box;
+}
+.joinCommunity > .block2, .members .block1{
+	color: rgba(0,0,0,0.7);
+	padding: 15px;
+}
+.joinCommunity > .block2{
+	text-align: center;
+}
+.rightContainer{
+	width: 73%;
+	padding: 0px 15px;
+	box-sizing: border-box;
+	border-left: 1px solid rgba(0,0,0,0.1);
+}
+.block1 > a{
+	display: inline-block;
+	background-color: #38b;
+	color: white;
+	padding: 6px 10px;
+	cursor: pointer;
+}
+.leftConatiner > .members{
+	display: flex;
+}
+.leftConatiner .managerprofile{
+	display: flex;
+	background-color: white;
+	padding: 10px 0px;
+	align-items: center;
+}
+.managerprofile > .pic{
+	width: 100px;
+	text-align: center;
+}
+.managerprofile > .pic > img, .managers .block2 div img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: 3px solid white;
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.3);
+}
+.owner > span{
+	font-size: small;
+	display: inline-block;
+	border-radius: 3px;
+	padding: 3px 5px;
+	color: white;
+	margin: 0px 3px;
+	background-color: #6c6;
+}
+.Admins > .name{
+	color: #38b;
+	font-size: 15px;
+	margin: 3px;
+}
+.communityDetail{
+	box-sizing: border-box;
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+}
+.communityDetail .block1{
+	padding: 15px;
+	text-align: center;
+	color: rgba(0,0,0,0.7);
+}
+.communityDetail .block2{
+	padding: 40px;
+	background-color: white;
+	text-align: center;
+}
+.managers{
+	display: flex;
+	flex-direction: column;
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+}
+.managers .block1{
+	display: flex;
+	padding: 15px;
+}
+.managers .block1 > div{
+	flex: 1;
+	text-align: left;
+	color: rgba(0,0,0,0.7);
+}
+.managers .block1 .viewall{
+	text-align: right;
+}
+.managers a{
+	color: #38b;
+	text-decoration: none;
+}
+.managers .block2{
+	padding: 15px;
+	background-color: white;
+	display: flex;
+	flex-wrap: wrap;
+}
+.managers .block2 div{
+	flex: 1;
+	text-align: center;
+}
+.managers .block2 div img{
+	border: none;
+}

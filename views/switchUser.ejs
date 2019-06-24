@@ -1,0 +1,81 @@
+<%-include('header')%>
+
+<%-include('sidebarSwitch')%>
+<%-include('navbar')%>
+
+<br><br><br><br>
+    <div class="container shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="imgsize">
+               <img class="imgsize" src="<%=data.profile%>">
+        </div>
+        <a href="/firstLogin" class="btn btn-info" style="float:right;">Edit profile</a>
+        <br><br><br>
+   <div class="row">
+       <div class="col">
+            <div class="card shadow mb-5 bg-white rounded ">
+                    <div class="card-header">
+                      Email
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-text text-muted font-weight-normal"><%=data.email%></h5>
+                    </div>
+                  </div>
+       </div>
+       <div class="col"><div class="card shadow  mb-5 bg-white rounded">
+            <div class="card-header">
+                      Gender
+            </div>
+            <div class="card-body">
+              <h5 class="card-text text-muted font-weight-normal"><%=data.gender%></h5>
+            </div>
+          </div></div>
+   </div>
+   <div class="row">
+        <div class="col">
+                <div class="card shadow mb-5 bg-white rounded">
+                        <div class="card-header">
+                          Name
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-text text-muted font-weight-normal"><%=data.username%></h5>
+                        </div>
+                    </div>
+        </div>
+       <div class="col">
+            <div class="card shadow  mb-5 bg-white rounded">
+                    <div class="card-header">
+                      City
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-text text-muted font-weight-normal"><%=data.city%></h5>
+                    </div>
+                  </div>
+       </div>
+    </div>
+   
+    <div class="row">
+        <div class="col">
+                <div class="card shadow  mb-5 bg-white rounded" >
+                        <div class="card-header">
+                          D.O.B
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-text text-muted font-weight-normal"><%=data.dob%></h5>
+                        </div>
+                      </div>
+        </div>
+       <div class="col">
+            <div class="card shadow mb-5 bg-white rounded ">
+                    <div class="card-header">
+                    Phone
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-text text-muted font-weight-normal"><%=data.phone%></h5>
+                    </div>
+                  </div>
+       </div>
+    </div>
+    </div>
+    
+ <%-include("switchModal")%>
+    <%-include("footer")%>

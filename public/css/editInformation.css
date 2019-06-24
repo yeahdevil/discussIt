@@ -1,0 +1,134 @@
+body{
+	margin: 0;
+	padding: 0;
+	background-color: rgb(243,244,244);
+	font-family: sans-serif;
+}
+.topbar{
+	padding: 15px 0px;
+	background-color: rgb(34,45,60);
+}
+.info{
+	padding: 15px;
+	background-color: white;
+	max-width: 1100px;
+	margin: auto;
+	margin-top: 25px;
+	margin-bottom: 50px;
+	border-radius: 3px;
+	box-shadow: 1px 1px 10px gray;
+	text-align: left;
+}
+.info .ProfilePic{
+	width: 150px;
+	height: 150px;
+	position: relative;
+	border: 1px solid #b3b3b3;
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.3);
+}
+.ProfilePic > span{
+	position: absolute;
+	transform: translate(-50%,-50%);
+	display: block;
+	padding: 10px 15px;
+	border: 1px solid #ccc;
+	top: 50%;
+	left: 50%;
+	opacity: 0;
+	cursor: pointer;
+	transition: opacity 0.2s;
+}
+.ProfilePic:hover > span{
+	opacity: 1;
+}
+.ProfilePic span:hover{
+	background-color: rgba(204, 204, 204,0.3);
+}
+.ProfilePic span:active{
+	box-shadow: inset 1px 1px 10px gray;
+}
+.ProfilePic img{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+.basicInfo{
+	border-radius: 5px;
+	overflow: hidden;
+	border: 1px solid #b3b3b3;
+	margin: 10px 0px;
+}
+.basicInfo .heading{
+	padding: 15px;
+	background-color: rgb(245,245,245);
+}
+.basicInfo .basic{
+	padding: 25px 15px;
+	padding-bottom: 0px;
+}
+.basicInfo:hover{
+	box-shadow: 1px 1px 10px gray;
+}
+.basicInfo .basic span,.basicInfo .basic input{
+	display: block;
+}
+.Info span{
+	font-weight: bold;
+}
+input, textarea, select, #datepicker{
+	width: 100%;
+	border-radius: 5px;
+	border: 1px solid #b3b3b3;
+	padding: 10px 15px;
+	font-size: 15px;
+	box-sizing: border-box;
+	color: #555;
+	margin-bottom: 25px;
+	resize: none;
+	margin-top: 5px;
+}
+.basicInfo .basic input:disabled{
+	background-color: rgb(245,245,245);
+	cursor: no-drop;
+}
+.action{
+	margin-top: 30px;
+	text-align: right;
+}
+.action > a, .action > button{
+	padding: 8px 12px;
+	border: 1px solid #ccc;
+	text-decoration: none;
+	color: white;
+	margin: 0px 2px;
+}
+.action .update{
+	background-color: #337ab7;
+}
+.action .update:hover{
+	background-color: #2e6da4;
+}
+.action .cancel{
+	background-color: #d9534f;
+}
+.action .cancel:hover{
+	background-color: #d43f3a;
+}
+.basic > div{
+	display: flex;
+	justify-content: space-between;
+}
+.basic > div > div{
+	width: 40%;
+}
+#profile{
+	background-color: rgb(51,122,183);
+}
+#profile > i, #profile > span{
+	color: white;
+}
+@media screen and (max-width: 950px){
+	.Info{
+		max-width: 100%;
+	}
+}

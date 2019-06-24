@@ -1,0 +1,42 @@
+<%-include('header')%>
+<%if(data.role=="admin"){%>
+<%-include('sidebarSwitch')%>
+<%}else if(data.role=="community builder"){%>
+<%-include('./communityBuilder/sidebar')%>
+<%}%>
+
+<%-include('navbar')%>
+<div class="container-fluid" style="margin:1rem">
+</div>
+<%-include('communityNav')%>
+ <%-include("switchModal")%>  
+<div><center>
+<h3 class="text-info" style="background-color: #e3f2fd;margin:3rem;padding:1rem;"">Your Communities</h3></center>
+    <% if(communities=="notfound"){ %>
+    <center>
+    <div class="container" style=" padding:1rem 3rem 1rem 3rem ;margin:3rem 0 3rem 0;">
+        <div class="card" >
+            <div class="card-body ">
+                <p class="card-text text-muted">You are currently not a part of any community</p>
+            </div>
+        </div>
+    </div></center>
+    <% }else{%>
+    <%for(i=0;i<communities.length;i++){if(communities[i].communityStatus=="activate"){%>
+    <center><div class="container" style="padding:1rem 3rem 1rem 3rem ;margin:3rem 0 3rem 0;">
+    <div class="card" style="">
+        <div class="card-header">
+             <%= communities[i].communityName %>
+        </div>
+        <div class="card-body" >
+            <h5 class="card-title"></h5>
+            <p class="card-text"><%= communities[i].communityDescription %></p>
+            <a href="#" class="btn btn-info" style="float:right">view</a>
+        </div>
+    </div>
+    </div>
+    </center>
+    <%}}%>
+<%}%>
+</div>
+<%-include('footer')%>

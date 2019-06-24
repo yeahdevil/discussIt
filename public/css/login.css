@@ -1,0 +1,86 @@
+body{
+	padding: 0;
+	margin: 0;
+	font-family: sans-serif;
+}
+.heading{
+	padding: 25px 0px 15px 15px;
+	box-shadow: 0 8px 6px -6px gray;
+	font-size: 30px;
+	font-family: sans-serif;
+	font-weight: bolder;
+}
+.loginForm{
+	width: 100%;
+	max-width: 800px;
+	margin: auto;
+	margin-top: 7%;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 10px;
+	min-height: 400px;
+	box-shadow: 2px 2px 10px gray;
+}
+.text{
+	padding: 0;
+	font-size: 35px;
+}
+.textBox{
+	display: block;
+	padding: 9px;
+	font-size: 17px;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 30px 0px 30px 0px;
+}
+.login{
+	border: none;
+	font-size: 15px;
+	color: white;
+	cursor: pointer;
+	border-radius: 5px;
+	transition: background 0.5s;
+	padding: 15px 20px 15px 20px;
+	outline: none;
+	margin-top: 5px;
+}
+.local{
+	margin: 0px 5px;
+	background-color: rgba(0, 102, 0, 0.8);
+}
+.github{
+	margin: 0px 5px;
+	background-color: rgba(51,51,51,0.9);
+	text-decoration: none;
+}
+.github:hover{
+	background-color: rgb(51,51,51);
+}
+.local:hover{
+	background-color: rgb(0, 102, 0);
+}
+.local:focus{
+	border: 5px solid rgb(175,222,186);
+	margin-top: 0px;
+	box-sizing: border-box;
+}
+.error{
+	background-color: rgb(248,215,218);
+	padding: 20px;
+	text-align: center;
+	color: rgb(123,63,87);
+	max-width: 600px;
+	width: 600px;
+	border-radius: 5px;
+	display: inline-block;
+}
+.footer{
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	font-size: 30px;
+	background-color: white;
+	padding: 20px 0px 40px 0px;
+	box-shadow: 0 5px 10px 6px gray;
+}

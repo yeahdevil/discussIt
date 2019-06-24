@@ -1,0 +1,77 @@
+.available{
+	padding: 15px;
+	width: 1170px;
+	max-width: 90%;
+	margin: auto;
+}
+.Ccontainer{
+	padding: 15px;
+	margin: 15px 0px;
+	background-color: white;
+	box-sizing: border-box;
+	border-radius: 5px;
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+	text-align: left;
+}
+.community{
+	display: flex;
+	justify-content: space-between;
+}
+.communityPic > img{
+	width: 100%;
+	height: 100%;
+	border: 3px solid rgba(0,0,0,0.1);
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+	box-sizing: border-box;
+}
+.communityPic{
+	width: 70px;
+	height: 70px;
+}
+.communityName{
+	text-align: left;
+	padding-top: 15px;
+	box-sizing:border-box;
+	width: 70%;
+}
+.communityName > a{
+	color: #337ab7;
+	text-decoration: none;
+	font-weight: bolder;
+	font-size: 20px;
+}
+.communityName > a:hover{
+	text-decoration: underline;
+	color: #26658c;
+}
+.communityName > a:active{
+	text-decoration: none;
+	color: #333;
+}
+.join{
+	text-align: right;
+	padding-top: 15px;
+	box-sizing:border-box;
+	width: 15%;
+}
+.join > span{
+	display: inline-block;
+	padding: 6px 12px;
+	font-size: small;
+	color: white;
+	background-color: #337ab7;
+	cursor: pointer;
+}
+h5{
+	margin: 10px 0px;
+	padding: 0;
+}
+.searchbar .fa-search{
+	border-bottom: 5px solid white;
+}
+#users{
+	background-color: rgb(51,122,183);
+}
+.tabBar a#users{
+	color: white;
+}

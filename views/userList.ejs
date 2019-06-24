@@ -1,0 +1,329 @@
+<%-include("header")%>
+
+<%-include("sidebar")%>
+<%-include("navbar")%>
+  <%-include("switchModal")%>    
+<br><br><br><br>
+<div class="container " id="example2" style="padding:1rem">
+	<div class="container">
+			<div class="filterButtons">
+				<div  style="float:left">
+					<div class="userlist btn btn-dark">
+						User List
+					</div>
+				</div>
+				<div style="float:right">
+					<div id="refresh" class="refresh  btn btn-dark" style="position:relative;left:4rem">
+						<i class="fa fa-refresh"></i> Refresh
+					</div>
+					<select id="Status"class="custom-select" style="background-color: #2D312C;color: #fff;width:30%;padding: 6px 12px;position:relative;left:4rem">
+						<option value="">All</option>
+						<option value="activate">Activated</option>
+						<option value="deactivate">Deactivated</option>
+					</select>
+					<select id = "Role" class="Role custom-select" style="background-color: #2D312C;color: #fff;width: 30%;padding: 6px 12px;position:relative;left:4rem">
+						<option  value="">All</option>
+						<option value="admin">Admin</option>
+						<option value="user">User</option>
+						<option value="community builder">Community Builder</option>
+					</select>
+				</div>
+			</div><br><br><br>
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>username</th>
+                <th>Email</th>
+                <th>phone</th>
+                <th>city</th>
+                <th>role</th>
+                <th>actions</th>
+
+            </tr>
+        </thead>
+    </table>
+
+    <%# emailmodal %>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="emailTitle"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="emailSubject" class="col-sm-2 col-form-label">Subject</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="emailSubject" value="">
+                        </div>
+                    </div>
+                    <div id="editor" style=" ">
+
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="mail()" data-dismiss="modal">Send</button>
+                    <input type="hidden" name="emailtext" vlaue="" id="emailtext">
+                </div>
+            </div>
+        </div>
+    </div>
+    <%# status modal %>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Change Status</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="setStatus">
+
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <input type="hidden" name="emailtext" vlaue="" id="userId">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        onclick="changeStatus()">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%# updatemodal %>
+
+
+    <div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateTitle"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="email" value="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="username" class="col-sm-2 col-form-label">Username</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="username">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="phone">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="city" class="col-sm-2 col-form-label">City</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="city">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="role" class="col-sm-2 col-form-label">Role</label>
+                        <select class="form-control" id="role">
+                            <optgroup label="Select User Role">
+                                <option value="user">User</option>
+                                <option value="community builder">Community Builder</option>
+                                <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="emailtext" vlaue="" id="userId1">
+                        <button type="button" class="btn btn-primary" onclick="updateEdit()" data-dismiss="modal">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+       
+        <script>
+            var table = $('#example').DataTable({
+                serverSide: true,
+                processing: true,
+                paging: true,
+                pageLength: 5,
+                "lengthMenu": [[2, 5, 10, 100], [2, 5, 10, "All"]],
+                ajax: {
+                    url: '/userList',
+                    type: 'POST',
+                    dataSrc: "data",
+                    "data" : function(d){
+                            d.roleFilter  =  $('#Role').val(),
+	                        d.statusFilter = $('#Status').val()
+                    }
+	                       
+	           
+                },
+                columns: [{
+                        "data": "username"
+                    },
+                    {
+                        "data": 'email'
+                    },
+                    {
+                        "data": 'phone'
+                    },
+                    {
+                        "data": "city"
+                    },
+                    {
+                        "data": "role"
+                    },
+                    {
+                        "data": "{}",
+                        "orderable": false
+                    },
+
+                ],
+                columnDefs: [{
+                        "targets": 5,
+                        "render": (data, type, row) => {
+                            if (row.status == 'activate')
+                                return `<center><button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" onclick="setEmail('${row.email}')"><i class="fas fa-envelope"></i></button>
+                                 <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalEdit" onclick="edit()"><i class="far fa-edit"></i></button>  
+                                 <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModalCenter" name="statusbtn" onclick="setStatus('${row.status}','${row._id}')"><i class="far fa-check-circle"></i></button></center>`
+                            else
+                                return `<center><button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" onclick="setEmail('${row.email}')"><i class="fas fa-envelope"></i></button>
+                                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalEdit" onclick="edit()"><i class="far fa-edit"></i></button>
+                                 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalCenter" name="statusbtn" onclick="setStatus('${row.status}','${row._id}')"><i class="far fa-times-circle"></i></button></center>`
+
+                        }
+                    },
+                    {
+                        "searchable": true
+                    },
+                    {
+                        "orderable": true
+                    }
+                ]
+            });
+            var quill = new Quill('#editor', {
+                theme: 'snow',
+                placeholder: "Enter message",
+            });
+            let desc = document.getElementById("emailtext");
+            quill.on("text-change", () => {
+                var text = quill.getText();
+                desc.value = text;
+            })
+
+            function setEmail(email) {
+                document.getElementById("staticEmail").value = email;
+                document.getElementById("emailTitle").innerHTML = "Mail to :- "+email;
+            }
+
+            function edit() {
+
+                $('#example tbody').on('click', 'tr', function () {
+                    let data = table.row(table.row(this).index()).data();
+                    document.getElementById("email").value = data.email;
+                    document.getElementById("phone").value = data.phone;
+                    document.getElementById("username").value = data.username;
+                    document.getElementById("role").value = data.role;
+                    document.getElementById("city").value = data.city;
+                    document.getElementById("userId1").value = data._id;
+                    document.getElementById("updateTitle").innerHTML = "Update : "+data.username;
+                });
+            }
+
+            function setStatus(status, _id) {
+                var setStatus = document.getElementById("setStatus");
+                document.getElementById("userId").value = _id + "." + status;
+                if (status == "activate")
+                    setStatus.innerHTML = "Are you sure you want to deactivate user?";
+                else
+                    setStatus.innerHTML = "Are you sure you want to activate user?";
+            }
+
+            function mail() {
+
+                $.ajax({
+                    url: "/mailUserList",
+                    type: "POST",
+                    data: {
+                        "email": document.getElementById("staticEmail").value,
+                        "text": document.getElementById("emailtext").value,
+                        "subject": document.getElementById("emailSubject").value
+                    },
+                    success: (result) => {
+                        console.log(result);
+                    }
+                });
+            }
+
+            function changeStatus() {
+                $.ajax({
+                    url: "/changeStatus",
+                    type: "POST",
+                    data: {
+                        "_idAndStatus": document.getElementById("userId").value
+                    },
+                    success: (result) => {
+                        table.ajax.reload();
+                    }
+                });
+            };
+            function updateEdit(){
+                $.ajax({
+                    url: "/updateUser",
+                    type: "POST",
+                    data: {
+                    "email":document.getElementById("email").value,
+                    "phone":document.getElementById("phone").value ,
+                    "username":document.getElementById("username").value ,
+                    "role":document.getElementById("role").value ,
+                    "city":document.getElementById("city").value ,
+                    "_id":document.getElementById("userId1").value ,
+                    },
+                    success: (result) => {
+                     
+                        table.ajax.reload();
+                    }
+                });
+            }
+            // mailmodal
+            $('#myModal').on('shown.bs.modal', function () {
+                $('#myInput').trigger('focus')
+            })
+            $('#Status').on('change', function () {
+                table.ajax.reload(null, false);
+            });
+            $('#Role').on('change', function () {
+                table.ajax.reload(null, false);
+                // console.log($('#Role').val() + $('#Status').val(),);
+            });
+            $('#refresh').on('click', function () {
+                table.ajax.reload(null, false);
+            });
+        </script>
+        <%-include('footer')%>

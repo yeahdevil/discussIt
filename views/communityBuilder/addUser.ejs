@@ -1,0 +1,103 @@
+   <%-include('../header')%>
+  
+         <%-include('sidebar')%>
+               <%-include('../navbar')%>
+               <center>
+   <div class="container" style="width:30%">
+  
+   <br>
+  
+    <div class="col-sm-3">
+    </div>    
+           <%-response%>
+          <div class="text" style="margin:0.5rem;" id="emailValidation"></div>
+           
+          <h3>Add User</h3>
+          <form action="/addUser" method="post" class="form-horizontal" id="form" autocomplete="nope" role="form">
+            <div class="col-sm-12">
+              <div class="form-group">
+              <span class="text" style="float:left;margin:0.5rem">Name</span>
+                  <input type="text" required="" name="username" class="form-control" id="fullname" placeholder="Name" autocomplete="off">
+              </div>
+
+                <div class="form-group">
+                <span class="text" style="float:left;margin:0.5rem">Email</span>
+                    <input type="email" required="" name="email" class="form-control" id="email" placeholder="Email" autocomplete="off" autocorrect="off">
+                    
+                </div>
+                <div class="form-group">
+                <span class="text" style="float:left;margin:0.5rem">Password</span>
+                    <input type="password" required="" name="password" class="form-control" placeholder="User Password" autocomplete="new-password" autocorrect="off">
+                </div>
+              <div class="form-group">
+              <span class="text" style="float:left;margin:0.5rem">Phone</span>
+                  <input type="number" required="" name="phone" class="form-control" maxlength="10" id="phone" placeholder="Phone" autocomplete="off">
+              </div>
+              <div class="form-group">
+              <span class="text" style="float:left;margin:0.5rem">City</span>
+                  <input type="text" required="" name="city" class="form-control" placeholder="City" autocomplete="false">
+              </div>
+              <div class="form-group">
+                <span class="text" style="float:left;margin:0.5rem">Role</span>
+                <select data-style="btn-info" name="role" class="form-control">
+                    <optgroup label="Select User Role">
+                      <option value="user">User</option>
+                        <option value="community builder">Community Builder</option>
+                    </optgroup>
+                </select><br>
+              </div>
+              <div class="form-group" >
+                  <input type="submit" value="Add User" class="btn btn-success" onclick="mail()">
+                  <a value="Add" class="btn btn-danger" href="/">Cancel</a>
+              </div>
+              </div>
+          </form>
+      </div>
+</div>
+</div>
+</div>
+</center>
+<script>
+function ValidateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+var email = document.getElementById("email");
+email.onblur=()=>{
+    if(!ValidateEmail(email.value))
+    {
+       document.getElementById("emailValidation").innerHTML =  '<div class="alert alert-danger" role="alert">OOPS!! Invalid format!</div>';
+    }
+    else{
+            $.ajax({
+                    url: "/checkEmail",
+                    type: "POST",
+                    data: {
+                        "email": document.getElementById("email").value
+                    },
+                    success: (result) => {
+                        if(result=="found"){
+                          document.getElementById("emailValidation").innerHTML =  '<div class="alert alert-danger" role="alert" style="width:90%">OOPS!! This email already taken!</div>';
+                        }
+                        else{
+                          document.getElementById("emailValidation").innerHTML = '<div class="alert alert-success" role="alert" style="width:90%">This email is available!</div>';
+                        }
+                    }
+                });
+    }
+};
+function mail()
+{
+   $.ajax({
+                    url: "/mailAddUser",
+                    type: "POST",
+                    data: {
+                        "email": document.getElementById("email").value
+                    },
+                    success: (result) => {
+                        console.log(result);
+                    }
+                });
+}
+</script>
+   <%-include('../footer')%>

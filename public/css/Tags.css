@@ -1,0 +1,98 @@
+.addTag{
+	background-color: white;
+	text-align: left;
+	padding: 15px;
+	box-sizing: border-box;
+	box-shadow: 2px 2px 20px gray;
+}
+h1{
+	font-size: 22px;
+	font-weight: lighter;
+	color: rgb(136,128,119);
+}
+.textBox{
+	padding: 8px 9px;
+	font-size: 14px;
+	box-sizing: border-box;
+	width: 100%;
+	border: 1px solid #b3b3b3;
+	border-radius: 3px;
+	margin: 10px 0px 10px 0px;
+}
+.tags{
+	max-width: 550px;
+	width: 100%;
+	display: inline-block;
+	margin-top: 80px;
+}
+.head{
+	border-bottom: 1px solid rgba(136,128,119,0.4);
+}
+.input{
+	margin-top: 5px;
+}
+.Submit{
+	width: 100%;
+	border: none;
+	background-color: rgb(51,122,183);
+	padding: 10px 0px;
+	color: white;
+}
+.showTags{
+	border: none;
+	background-color: rgb(240,173,78);
+	padding: 10px 20px;
+	color: white;
+	margin: 15px 0px;
+}
+.alert{
+	position: absolute;
+	width: 100%;
+	height: 0;
+	overflow: hidden;
+	z-index: 10;
+	box-sizing: border-box;
+	text-align: center;
+	color: white;
+}
+.added{
+	background-color: rgb(87,191,87);
+}
+.exist{
+	background-color: rgb(225,113,91);
+}
+.animate{
+	animation: alert 2s;
+}
+@keyframes alert{
+	0%{
+		height: 0px;
+	}
+	25%{
+		padding-top: 25px;
+		height: 70px;
+	}
+	75%{
+		padding-top: 25px;
+		height: 70px;
+	}
+	100%{
+		padding: 0;
+		height: 0px;
+	}
+}
+#tags{
+	background-color: rgb(51,122,183);
+}
+#tags > i, #tags > span{
+	color: white;
+}
+@media screen and (max-width: 950px) {
+	.userImg{
+		display: none;
+	}
+	.AddUser{
+		width: 100%;
+		max-width: 100%;
+	}
+}

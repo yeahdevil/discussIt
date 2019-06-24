@@ -1,0 +1,113 @@
+.editcover{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(51,51,51,0.1);
+	z-index: 1;
+}
+.edit{
+	background-color: white;
+	position: absolute;
+	display: inline-block;
+	width: 600px;
+	border-radius: 10px;
+	border: 1px solid gray;
+	top: -100%;
+	transform: translateX(-50%);
+	left: 50%;
+	opacity: 0;
+	transition: 1s;
+	box-shadow: 3px 3px 20px #333;
+	z-index: 2;
+}
+.Manimate{
+	animation: top_down 0.5s both;
+}
+.animatereverse{
+	animation: down_top 1s both;	
+}
+@keyframes top_down{
+	from{
+		top : -100%;
+		opacity: 0;
+	}
+	to{
+		top : 20px;
+		opacity: 1;
+	}
+}
+@keyframes down_top{
+	from{
+		opacity: 1;
+		top : 20px;
+	}
+	to{
+		opacity: 0;
+		top : -200%;
+	}
+}
+.heading{
+	padding: 15px 20px;
+}
+.close{
+	padding: 15px;
+}
+.heading, .data{
+	border-bottom: 1px solid gray;
+}
+.heading{
+	position: relative;
+}
+.row{
+	display: flex;
+	margin: 25px 20px;
+	justify-content: center;
+}
+.name, .value{
+	display: inline-block;
+}
+.name{
+	width: 20%;
+}
+.value{
+	width: 80%;
+}
+.close{
+	text-align: right;
+}
+h1{
+	font-size: 20px;
+}
+h1,h6{
+	margin: 0;
+}
+.cross{
+	float: right;
+	border: none;
+	background-color: transparent;
+	font-weight: bolder;
+	font-size: 15px;
+	color: gray;
+	outline: none;
+}
+.EtextBox{
+	padding: 7px 9px;
+	font-size: 17px;
+	box-sizing: border-box;
+	width: 100%;
+	border: 1px solid #b3b3b3;
+	border-radius: 3px;
+}
+.update, .cls{
+	border: 1px solid gray;
+	padding: 7px 16px;
+	background-color: transparent;
+}
+#communityList{
+	background-color: rgb(51,122,183);
+}
+#communityList > i, #communityList > span{
+	color: white;
+}

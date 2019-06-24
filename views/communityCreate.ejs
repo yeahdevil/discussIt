@@ -1,0 +1,68 @@
+<%-include('header')%>
+<%if(data.role=="admin"){if(data.tempRole=="user"){%>
+<%-include('sidebarSwitch')%>
+<%}else{%>
+<%-include('sidebar')%>
+<%}}else if(data.role=="community builder"){%>
+<%-include('./communityBuilder/sidebar')%>
+<%}%>
+<%-include("switchModal")%>  
+<%-include('navbar')%>
+<div class="container">
+    <div class="row">
+        <div class="container allSides col-sm-6" style="margin-top: 20px">
+            <%-response-%>
+            <form action="/communityCreate" method="post">
+                <div class="col-sm-12">
+                    <h2>Create community</h2>
+                    <div class="form-group">
+                        <span>Name</span>
+                        <input type="text" class="form-control" name="communityName" placeholder="name" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="communityDescription" vlaue="" id="desc">
+                       
+
+                        <!-- Create the editor container -->
+                        <div id="editor" style="height: 200px">
+
+
+                        </div>
+
+                        <!-- Include the Quill library -->
+                        
+
+                        <!-- Initialize Quill editor -->
+                        <script>
+                            var quill = new Quill('#editor', {
+                                theme: 'snow',
+                                placeholder: "Enter Description here",
+                            });
+                            let desc = document.getElementById("desc");
+                            quill.on("text-change", () => {
+                                var text = quill.getText();
+                                desc.value = text;
+                            })
+                        </script>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Community Type:</label>
+                        <select data-style="btn-info" name="communityEntry" class="form-control">
+                            <optgroup label="Select Community type">
+                                <option value="public">public</option>
+                                <option value="private">private</option>
+                            </optgroup>
+                        </select>
+                    </div><br>
+                    <div class="form-group">
+                        <input type="submit" value="Add community" class="btn btn-success">
+                        <a value="Add User" class="btn btn-danger" href="/home">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%-include("footer")-%>

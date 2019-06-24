@@ -1,0 +1,97 @@
+.AddUser{
+	width: 40%;
+	margin: auto;
+	box-sizing: border-box;
+	padding: 15px;
+	max-width: 850px;
+	margin-top: 40px;
+	background-color: white;
+	border: 5px solid #e6e6e6;
+	text-align: left;
+}
+
+h1{
+	font-weight: lighter;
+	font-size: 40px;
+}
+.textBox{
+	display: block;
+	padding: 7px 9px;
+	font-size: 17px;
+	box-sizing: border-box;
+	width: 100%;
+	border: 1px solid #b3b3b3;
+	border-radius: 3px;
+	margin: 20px 0px 30px 0px;
+}
+.textBox:focus{
+	box-shadow: 1px 1px 10px #4d4dff;
+}
+.add, .cancel{
+	text-decoration: none;
+	padding: 10px 15px;
+	border: none;
+	font-size: 20px;
+	cursor: pointer;
+	color: white;
+}
+.add{
+	background-color: #5CB85C;
+}
+.cancel{
+	background-color: #D9584F;
+	margin-left: 5px;
+}
+.add:hover{
+	background-color: #46a046;
+}
+.cancel:hover{
+	background-color: #d1392e;
+}
+.added{
+	border : 1px solid rgb(216,235,203);
+	padding: 20px;
+	margin-top: 20px;
+	box-sizing: border-box;
+	display: inline-block;
+	color: rgb(60,118,63);
+	font-weight: bold;
+	font-size: 17px;
+	font-family: sans-serif;
+	text-align: center;
+	background-color: rgb(223,240,216);
+	width: 30%;
+	max-width: 600px;
+	border-radius: 5px;
+}
+.added span{
+	display: inline-block;
+	
+	text-align: right;
+}
+.close{
+	/*position: relative;
+	right: -21px;*/
+	cursor: pointer;
+	color: rgb(190,216,185);
+	font-weight: bolder;
+}
+.close:hover{
+	color: #333;
+	opacity: 0.4;
+}
+#addUser{
+	background-color: rgb(51,122,183);
+}
+#addUser > i, #addUser > span{
+	color: white;
+}
+@media screen and (max-width: 950px) {
+	.userImg{
+		display: none;
+	}
+	.AddUser{
+		width: 100%;
+		max-width: 100%;
+	}
+}

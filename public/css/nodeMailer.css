@@ -1,0 +1,107 @@
+.mailContainer{
+	width: 600px;
+	max-width: 80%;
+	display: inline-none;
+	border: 1px solid #b3b3b3;
+	position: absolute;
+	transform: translateX(-50%);
+	left: 50%;
+	top: -200%;
+	border-radius: 5px;
+	overflow: hidden;
+	z-index: 10;
+	background-color: white;
+}
+.Mcover{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.3);
+	overflow: scroll;
+	z-index: 9;
+}
+.Manimate{
+	animation: top_down 0.5s both;
+}
+.animatereverse{
+	animation: down_top 0.5s linear both;
+}
+@keyframes top_down{
+	from{
+		top : -200%;
+	}
+	to{
+		top : 20px;
+	}
+}
+@keyframes down_top{
+	from{
+		top : 20px;
+	}
+	to{
+		top : -200%;
+	}
+}
+.form-group{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 10px 0px;
+	padding: 0px 10px;
+}
+.Mleft{
+	width: 15%;
+	font-size: 17px;
+	font-weight: bold;
+	text-align: right;
+}
+.Mright{
+	width: 80%;
+	text-align: left;
+}
+.MtextBox{
+	padding: 7px 9px;
+	font-size: 17px;
+	box-sizing: border-box;
+	width: 100%;
+	border: 1px solid #b3b3b3;
+	border-radius: 3px;
+	color: rgb(91,91,91);
+	margin: 0;
+}
+.Mhead{
+	text-align: left;
+	font-size: 20px;
+	box-sizing: border-box;
+	border-bottom: 1px solid #b3b3b3;
+	padding: 15px;
+	color: #333;
+}
+.Mdata{
+	padding: 0px 10px;
+}
+.Msend{
+	text-align: right;
+	padding: 15px 10px;
+}
+.Msend > button{
+	text-decoration: none;
+	border: 1px solid #b3b3b3;
+	padding: 8px 12px;
+	color: rgb(75,75,75);
+	background-color: white;
+}
+.Mclose{
+	float: right;
+	cursor: pointer;
+	font-weight: bolder;
+	color: gray;
+}
+@media screen and (max-width: 950px) {
+	.mailContainer{
+		width: 99%;
+		max-width: 100%;
+	}
+}

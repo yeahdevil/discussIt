@@ -1,0 +1,27 @@
+<%-include("header")%>
+<div class="container" style="margin:10rem;" id="switch"  >
+<center><h4 style="position:absolute;z-index:-1;left:41%;top:42%">Switching to <strong id="">
+<% if(data.tempRole=="admin") {%>
+       User
+        <% }else{ %>
+        Admin
+        <%}%>
+</strong></h4>
+
+<img src="./images/loading.gif" style="width:30%;height:30%" onload="switchpage()"></center>
+</div>
+<input type="hidden" id="role" value="<%=data.tempRole%>">
+<script>
+function switchpage(){
+    var data = document.getElementById("role");  
+        console.log(data.value);    
+   setTimeout(function(){ 
+          
+		if(data.value=="admin")
+        window.location.replace("/switchAsUser");
+        else
+				window.location.replace("/");
+       }, 1000);
+};
+</script>
+<%-include('footer')%>

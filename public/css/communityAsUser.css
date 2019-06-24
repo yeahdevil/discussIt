@@ -1,0 +1,110 @@
+.list{
+	width: 75%;
+	max-width: 1300px;
+	margin: auto;
+	margin-top: 50px;
+}
+.communities{
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+	margin-bottom: 50px;
+}
+.myCommunity{
+	/*height: 100px;*/
+	display: flex;
+	align-items: center;
+	padding: 17px 15px;
+	background-color: #0fb1d5;
+	color: white;
+}
+.myCommunity > div{
+	flex: 1;
+	box-sizing: border-box;
+}
+.heading{
+	text-align: left;
+}
+.create{
+	text-align: right;
+}
+.myCommunity a{
+	color: white;
+	text-decoration: none;
+	padding: 8px 12px;
+	border: 1px solid white;
+}
+.communities{
+	background-color: white;
+	padding: 10px;
+	box-sizing: border-box;
+}
+.community{
+	display: flex;
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	padding: 10px 30px;
+	text-align: left;
+	margin: 10px 0px;
+	align-items: center;
+	min-width: 300px;
+}
+.CommunityImg{
+	flex: 1;
+}
+.CommunityImg > img{
+	width: 50px;
+	height: 55px;
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+}
+.nameNreq{
+	flex: 10;
+}
+.nameNreq > .Name{
+	font-weight: bolder;
+	color: #48c;
+}
+.nameNreq > .req{
+	color: #48c;
+	font-size: 14px;
+	text-decoration: none;
+}
+.nameNreq > .req:hover{
+	text-decoration: underline;
+}
+.setting{
+	flex: 1;
+	text-align: right;
+}
+.fa-cogs{
+	padding: 3px 7px;
+	background-color: #6c6;
+	font-size: 12px;
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
+	/*display: inline-block;*/
+}
+.searchbar .fa-users{
+	border-bottom: 5px solid white;
+}
+#users{
+	background-color: rgb(51,122,183);
+}
+.tabBar a#users{
+	color: white;
+}
+@media screen and (max-width: 950px) {
+	.list{
+		width: 100%;
+		margin-top: 0px;
+		box-shadow: none;
+	}
+	.searchbar{
+		text-align: center;
+	}
+	.searchbar > .fa-users{
+		margin-left: 0px;
+	}
+	.nameNreq > .Name{
+		padding-left: 10px;
+	}
+}

@@ -1,0 +1,48 @@
+<%-include('header')%>
+<%if(data.role=="admin"){if(data.tempRole=="user"){%>
+<%-include('sidebarSwitch')%>
+<%}else{%>
+<%-include('sidebar')%>
+<%}}else if(data.role=="community builder"){%>
+<%-include('./communityBuilder/sidebar')%>
+<%}%>
+<%-include('navbar')%>
+ <%-include("switchModal")%>  
+<%-include('communityNav')%>
+<div><center>
+<h3 class="text-info" style="background-color: #e3f2fd;margin:3rem;padding:1rem;"">All Communities</h3></center>
+</center>
+    <% if(communities=="notfound"){ %>
+    <center>
+    <div class="container" style=" padding:1rem 3rem 1rem 3rem ;margin:3rem 0 3rem 0;">
+        <div class="card" >
+            <div class="card-body ">
+                <p class="card-text text-muted">No communities to display</p>
+            </div>
+        </div>
+    </div></center>
+    <% }else{%>
+    <%for(i=0;i<communities.length;i++){if(communities[i].communityStatus=="activate"){%>
+    <center><div class="container" style=" padding:1rem 3rem 1rem 3rem ;margin:3rem 0 3rem 0;">
+    <div class="card" style="">
+        <div class="card-header">
+             <%= communities[i].communityName %>
+        </div>
+        <div class="card-body" >
+            <h5 class="card-title"></h5>
+            <p class="card-text"><%= communities[i].communityDescription %></p>
+            <%if(communities[i].communityOwner==data.email){%>
+                <a href="#" class="btn btn-info" style="float:right">View</a>
+            <%}else{%>
+            <% if(communities[i].communityEntry=="private"){%>
+            <a href="#" class="btn btn-info" style="float:right">Ask to Join</a>
+            <%}else{%>
+            <a href="#" class="btn btn-info" style="float:right">Join</a>
+            <%}}%>
+        </div>
+    </div>
+    </div></center>
+    <%}}%>
+<%}%>
+</div>
+<%-include('footer')%>

@@ -1,0 +1,73 @@
+.Ccontainer{
+	max-width: 600px;
+	margin: auto;
+	text-align: left;
+	color: rgb(131,112,112);
+	padding: 10px;
+}
+.Ccontainer  h1{
+	padding: 10px;
+	box-sizing: border-box;
+	font-weight: lighter;
+	border-bottom: 1px solid #eee;
+}
+.textBox{
+	padding: 7px 9px;
+	font-size: 17px;
+	box-sizing: border-box;
+	width: 100%;
+	border: 1px solid #b3b3b3;
+	border-radius: 3px;
+}
+.role > h4{
+	display: inline-block;
+	font-weight: bolder;
+}
+.Ccontainer .upload, .Ccontainer .create{
+	color: white;
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+.Ccontainer .upload{
+	background-color: #f0ad4e;
+	padding: 8px 12px;
+	display: block;
+	width: 100px;
+	margin-left: 10px;
+}
+.Ccontainer .upload:hover{
+	background-color: #eea236
+}
+.Ccontainer .create{
+	text-align: center;
+	padding: 10px 12px;
+	background-color: #337ab7;
+	width: 100%;
+	border: none;
+}
+.Ccontainer .create:hover{
+	background-color: #2e6da4;
+}
+.Ccontainer .upload:active{
+	box-shadow: inset 1px 1px 5px gray;
+}
+.created{
+	color: #31708f;
+	padding: 20px;
+	max-width: 90%;
+	box-sizing: border-box;
+	margin: auto;
+	border: 2px solid #bce8f1;
+	font-weight: bolder;
+	margin-bottom: 20px;
+	background-color: #d9edf7;
+	border-radius: 5px;
+}
+input[type="file"]{
+	display: none;
+}
+@media screen and (max-width: 950px) {
+	.Ccontainer{
+		max-width: 100%;
+	}
+}

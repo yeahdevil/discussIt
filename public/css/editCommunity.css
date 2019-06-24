@@ -1,0 +1,53 @@
+.ediContainer{
+	max-width: 1150px;
+	margin: 50px auto;
+	padding: 10px 15px;
+	background-color: white;
+	text-align: left;
+	color: rgba(0,0,0,0.7);	
+}
+.ediContainer > img{
+	display: block;
+	width: 150px;
+	height: 150px;
+	border: 1px solid rgba(51,122,183,0.5);
+	border-radius: 3px;
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
+	margin: 10px 0px;
+}
+.textBox{
+	padding: 7px 9px;
+	font-size: 17px;
+	box-sizing: border-box;
+	width: 100%;
+	border: 1px solid #b3b3b3;
+	border-radius: 3px;
+	color: rgba(0,0,0,0.7);
+}
+.textBox:focus{
+	box-shadow: 1px 1px 10px #38b;
+}
+.ediContainer > h4{
+	padding: 0;
+	margin: 0;
+	color: rgba(0,0,0,0.8);
+	font-size: 15px;
+	margin-top: 20px;
+	margin-bottom: 8px;
+}
+.update{
+	text-align: right;
+}
+.update > button{
+	display: inline-block;
+	border: 1px solid rgba(0,0,0,0.1);
+	padding: 8px 12px;
+	background-color: #38b;
+	color: white;
+	cursor: pointer;
+}
+@media screen and (max-width: 950px) {
+	.ediContainer{
+		max-width: 100%;
+	}
+}
