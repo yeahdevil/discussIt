@@ -52,7 +52,9 @@ const userSchema = new mongoose.Schema({
     status:{
         type:String,
         enum:['activate','deactivate'],
-    }
+    },
+    communitiesJoined:[{ type: Schema.ObjectId, ref: 'community' }],
+
     
 });
 
@@ -83,10 +85,63 @@ const communitySchema = mongoose.Schema({
         type:String,
         enum:['activate','deactivate'],
     },
-    communityUsers : [{ type: Schema.ObjectId, ref: 'User' }]
+    communityUsers : [{ type: Schema.ObjectId, ref: 'user' }],
+    // communityDiscussions : [{ type: Schema.ObjectId, ref: 'discussion' }],
 });
 
 const Community = mongoose.model("community",communitySchema);
 
+const requestSchema = mongoose.Schema({
+    userId:{
+        type: Schema.ObjectId, ref: 'user' 
+    },
+    OwnerEmail:{
+        type: String 
+    },
+    communityId:{
+        type: Schema.ObjectId, ref: 'community' 
+    }
+});
+const discussionSchema = mongoose.Schema({
+    title:{
+        type:String,
+        required:true
+    },
+    message:{
+        type:String,
+        required:true
+    },
+    userId:{
+        type: Schema.ObjectId, ref: 'user' 
+    },
+    userName:{
+        type:String,
+        required:true
+    },
+    communityId:{
+        type: Schema.ObjectId, ref: 'community' 
+    },
+    date:{
+        type:String
+    },
+    comments:[{
+        commentuserId:{
+            type:Schema.ObjectId, ref: 'user',
+            required:true
+        },
+        commentuserName:{
+            type:String,
+            required:true
+        },
+        comment:{
+            type:String,
+            required:true
+        }
+    }],
+})
+const Discussion = mongoose.model("discussion",discussionSchema);
+const Request = mongoose.model("request",requestSchema);
 module.exports.User=User;
+module.exports.Request = Request;
 module.exports.Community=Community;
+module.exports.Discussion=Discussion;

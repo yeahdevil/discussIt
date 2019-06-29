@@ -3,46 +3,94 @@
 <%-include('sidebarSwitch')%>
 <%}else{%>
 <%-include('sidebar')%>
-<%}}else if(data.role=="community builder"){%>
+<%}}else if(data.role=="community builder" || data.role=="user"){%>
 <%-include('./communityBuilder/sidebar')%>
 <%}%>
 <%-include('navbar')%>
- <%-include("switchModal")%>  
+<%-include("switchModal")%>
 <%-include('communityNav')%>
-<div><center>
-<h3 class="text-info" style="background-color: #e3f2fd;margin:3rem;padding:1rem;"">All Communities</h3></center>
+<div>
+    <center>
+        <h3 class="text-info" style="background-color: #e3f2fd;margin:3rem;padding:1rem;"">All Communities</h3></center>
 </center>
     <% if(communities=="notfound"){ %>
     <center>
-    <div class="container" style=" padding:1rem 3rem 1rem 3rem ;margin:3rem 0 3rem 0;">
-        <div class="card" >
-            <div class="card-body ">
-                <p class="card-text text-muted">No communities to display</p>
+    <div class=" container" style=" padding:1rem 3rem 1rem 3rem ;margin:3rem 0 3rem 0;">
+            <div class="card">
+                <div class="card-body ">
+                    <p class="card-text text-muted">No communities to display</p>
+                </div>
+            </div>
+</div>
+</center>
+<% }else{%>
+<%for(i=0;i<communities.length;i++){if(communities[i].communityStatus=="activate"){%>
+<center>
+    <div id="<%= communities[i]._id %>" class="container" style=" padding:1rem 3rem 1rem 3rem ;margin:3rem 0 3rem 0;">
+        <div class="card" style="">
+            <div class="card-header">
+                <b class=" text-info" style="float:left"><%= communities[i].communityName %>&nbsp;&nbsp;</b>
+                               <small class=" text-info" style="float:left">(Created On : <%= communities[i].communityDate %>)</small>
+                   <p class=" text-info" style="float:right">members[<%=communities[i].communityUsers.length%>]</p>
+
+            </div>
+            <div class="card-body">
+                       <img src="./images/community.png" style="height:5rem;width:5rem;float:left;border-style:solid;border:5;border-color:grey;'">
+
+                <p class="text-muted">Description :  <%= communities[i].communityDescription %></p>
+                <%if(communities[i].communityOwner==data.email){%>
+                <a href="#" class="btn btn-info" style="float:right">View</a>
+                <%}else{%>
+                <% if(communities[i].communityEntry=="private"){%>
+                <a href="#" class="btn btn-info" style="float:right" onclick="request('<%= communities[i]._id %>','<%= communities[i].communityOwner %>')">Ask to
+                    Join</a>
+                <%}else{%>
+                <a href="#" class="btn btn-info" style="float:right"
+                    onclick="join('<%= communities[i]._id %>')">Join</a>
+                <%}}%>
             </div>
         </div>
-    </div></center>
-    <% }else{%>
-    <%for(i=0;i<communities.length;i++){if(communities[i].communityStatus=="activate"){%>
-    <center><div class="container" style=" padding:1rem 3rem 1rem 3rem ;margin:3rem 0 3rem 0;">
-    <div class="card" style="">
-        <div class="card-header">
-             <%= communities[i].communityName %>
-        </div>
-        <div class="card-body" >
-            <h5 class="card-title"></h5>
-            <p class="card-text"><%= communities[i].communityDescription %></p>
-            <%if(communities[i].communityOwner==data.email){%>
-                <a href="#" class="btn btn-info" style="float:right">View</a>
-            <%}else{%>
-            <% if(communities[i].communityEntry=="private"){%>
-            <a href="#" class="btn btn-info" style="float:right">Ask to Join</a>
-            <%}else{%>
-            <a href="#" class="btn btn-info" style="float:right">Join</a>
-            <%}}%>
-        </div>
     </div>
-    </div></center>
-    <%}}%>
+</center>
+<%}}%>
 <%}%>
 </div>
+
+<script>
+function join(id) {
+console.log(id);
+var element = document.getElementById(id);
+$.ajax({
+ url: "/addUserToCommunity",
+                type: "POST",
+                data: {
+                   "id": id,
+                   
+                },
+                success: (result) => {
+                    console.log("added");   
+                }
+});
+element.parentElement.removeChild(element);
+    
+}
+function request(id,owner) {
+    var element = document.getElementById(id);
+$.ajax({
+ url: "/requestToJoinCommunity",
+                type: "POST",
+                data: {
+                   "id": id,
+                   "owner":owner
+                },
+                success: (result) => {
+                    console.log(result);
+                    if(result="already requested"){
+                        alert(result);
+                    }   
+                }
+});
+   element.parentElement.removeChild(element); 
+}
+</script>
 <%-include('footer')%>

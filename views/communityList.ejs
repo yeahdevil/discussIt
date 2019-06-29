@@ -2,26 +2,26 @@
 
 <%-include("sidebar")%>
 <%-include("navbar")%>
- 
+
 <br><br><br><br>
 
 
 <div class="container " id="example2" style="padding:1rem">
-<div class="filterButtons">
-				<div  style="float:left">
-					<div class="userlist btn btn-dark">
-						Community List
-					</div>
-				</div>
-				<div style="float:right">
-					<div id="refresh" class="refresh  btn btn-dark" style="">
-						<i class="fa fa-refresh"></i> Refresh
-					</div>
-					
-				</div>
-			</div><br><br><br>
-     <table id="example1" class="display" style="width:100%">
-         <thead>
+    <div class="filterButtons">
+        <div style="float:left">
+            <div class="userlist btn btn-dark">
+                Community List
+            </div>
+        </div>
+        <div style="float:right">
+            <div id="refresh" class="refresh  btn btn-dark" style="">
+                <i class="fa fa-refresh"></i> Refresh
+            </div>
+
+        </div>
+    </div><br><br><br>
+    <table id="example1" class="display" style="width:100%">
+        <thead>
             <tr>
                 <th>Community Name</th>
                 <th>Community Description</th>
@@ -29,23 +29,23 @@
                 <th>Community Date</th>
                 <th>Community Owner</th>
                 <th>Actions</th>
-      
+
             </tr>
         </thead>
-     </table>
-           
-            <%# // infomodal %>
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+    </table>
+
+    <%# // infomodal %>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"  id="name"></h5>
+                    <h5 class="modal-title" id="name"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <label for="description" class ="text-muted" style="margin:1rem">Community Description</label>
+                <label for="description" class="text-muted" style="margin:1rem">Community Description</label>
                 <div class="modal-body bg-light" style="margin:1rem" id="description">
 
 
@@ -60,110 +60,151 @@
     </div>
     <%# edit modoal %>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="updateTitle"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-         <small class="form-text text-muted" id="updateTitleText"></small>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-        <label for="communityName">Community Name</label>
-        <input type="text" class="form-control" id="communityName" >
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateTitle"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <small class="form-text text-muted" id="updateTitleText"></small>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="communityName">Community Name</label>
+                        <input type="text" class="form-control" id="communityName">
+                    </div>
+                    <label for="communityStatus">Community Status</label>
+                    <select class="form-control" id="communityStatus">
+                        <optgroup label="Select community status">
+                            <option value="activate">Activate</option>
+                            <option value="deactivate">Deactivate</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="emailtext" vlaue="" id="communityId">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        onclick='updateCommunity()'>Update</button>
+                </div>
+            </div>
         </div>
-         <label for="communityStatus">Community Status</label>
-        <select class="form-control" id="communityStatus">
-            <optgroup label="Select community status">
-                    <option value="activate">Activate</option>
-                    <option value="deactivate">Deactivate</option>
-        </select>
-      </div>
-      <div class="modal-footer">
-        <input type="hidden" name="emailtext" vlaue="" id="communityId">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick='updateCommunity()'>Update</button>
-      </div>
     </div>
-  </div>
-</div>
- <%-include("switchModal")%>
-   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>            
-            <script>
-         var table =   $('#example1').DataTable( {
-    serverSide: true,
-    processing: true,
-    paging:true,
-    pageLength:5,
-     "lengthMenu": [[2, 5, 10, 100], [2, 5, 10, "All"]],
-     ajax: {
-     url: '/communityList',
-         type: 'POST',
-         dataSrc:"data"
-    }
-    ,columns: [
-        {"data" : "communityName"},
-        { "data": 'communityDescription'  },
-        { "data": 'communityEntry' },
-        { "data": "communityDate"},
-        { "data": "communityOwner"},
-         { "data": "{}","orderable":false},
-    
-    ],
-    columnDefs:[
+    <%-include("switchModal")%>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        var table = $('#example1').DataTable({
+            serverSide: true,
+            processing: true,
+            paging: true,
+            pageLength: 5,
+            "lengthMenu": [
+                [2, 5, 10, 100],
+                [2, 5, 10, "All"]
+            ],
+            ajax: {
+                url: '/communityList',
+                type: 'POST',
+                dataSrc: "data"
+            },
+            columns: [{
+                    "data": "communityName"
+                },
                 {
-                        "targets": 5,
-                        "render": (data, type, row) =>{
-                            return `<center><button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal" onclick="edit()"><i class="far fa-edit"></i></button>
-                                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalCenter" onclick="info()"><i class="fas fa-info"></i></button></center>`
-                        }},
-        {"searchable":true},
-        {"orderable":true}
-    ]
-} );
+                    "data": 'communityDescription'
+                },
+                {
+                    "data": 'communityEntry'
+                },
+                {
+                    "data": "communityDate"
+                },
+                {
+                    "data": "communityOwner"
+                },
+                {
+                    "data": "{}",
+                    "orderable": false
+                },
+                // {
+                //     "data": "{}",
+                //     "orderable": false
+                // }
 
-        function edit(){
-                 $('#example1 tbody').on('click', 'tr', function () {
-                     let data = table.row(table.row(this).index()).data();
-                       document.getElementById('communityName').value = data.communityName;
-                       document.getElementById('communityStatus').value = data.communityStatus;
-                       document.getElementById('updateTitle').innerHTML = "Update "+data.communityName+"<br><small class='form-text text-muted'> Created By : "+data.communityOwner+" on "+data.communityDate+"</small>";
-                       document.getElementById('communityId').value = data._id;
-                });
-        }
-        function info(){
-            
-            $('#example1 tbody').on('click', 'tr', function () {
-                     let data = table.row(table.row(this).index()).data();
-                       document.getElementById('name').innerHTML = "Info of : "+data.communityName;
-                       document.getElementById('description').innerHTML = data.communityDescription;
-                });
-         
-        }
-        function updateCommunity(){
-            $.ajax({
-                    url: "/updateCommunity",
-                    type: "POST",
-                    data: {
-                    "communityName":document.getElementById("communityName").value,
-                    "communityStatus":document.getElementById("communityStatus").value ,
-                    "communityId":document.getElementById("communityId").value ,
-                    },
-                    success: (result) => {
-                        table.ajax.reload();
+            ],
+            columnDefs: [{
+                    "targets": 5,
+
+                    "render": (data, type, row) => {
+                        return `<center><button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal" onclick="edit()"><i class="far fa-edit"></i></button>
+                                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalCenter" onclick="info()"><i class="fas fa-info"></i></button></center>`
                     }
-                });
+                },
+                // {
+                //     "targets": 6,
+                    
+                //     "render": (data, type, row) => {
+                //         if(data.communityStatus=="activated")
+                //         {
+                //             return "<img src='community.png' style='border-style:solid;border:5;border-color:green' height='50px' width='50px'>"
+                //         } 
+                //             else return "<img src='community.png' style='border-style:solid;border:5;border-color:red;' height='50px' width='50px'>"
+                //     }
+                // },
+                {
+                    "searchable": true
+                },
+                {
+                    "orderable": true
+                }
+            ]
+        });
+
+        function edit() {
+            $('#example1 tbody').on('click', 'tr', function () {
+                let data = table.row(table.row(this).index()).data();
+                document.getElementById('communityName').value = data.communityName;
+                document.getElementById('communityStatus').value = data.communityStatus;
+                document.getElementById('updateTitle').innerHTML = "Update " + data.communityName +
+                    "<br><small class='form-text text-muted'> Created By : " + data.communityOwner + " on " +
+                    data.communityDate + "</small>";
+                document.getElementById('communityId').value = data._id;
+            });
+        }
+
+        function info() {
+
+            $('#example1 tbody').on('click', 'tr', function () {
+                let data = table.row(table.row(this).index()).data();
+                document.getElementById('name').innerHTML = "Info of : " + data.communityName;
+                document.getElementById('description').innerHTML = data.communityDescription;
+            });
+
+        }
+
+        function updateCommunity() {
+            $.ajax({
+                url: "/updateCommunity",
+                type: "POST",
+                data: {
+                    "communityName": document.getElementById("communityName").value,
+                    "communityStatus": document.getElementById("communityStatus").value,
+                    "communityId": document.getElementById("communityId").value,
+                },
+                success: (result) => {
+                    table.ajax.reload();
+                }
+            });
 
         }
         // mailmodal
-            $('#myModal').on('shown.bs.modal', function () {
-                $('#myInput').trigger('focus')
-            })
-            $('#refresh').on('click', function () {
-                table.ajax.reload(null, false);
-            });
-            </script>
-            <%-include('footer')%>
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+        $('#refresh').on('click', function () {
+            table.ajax.reload(null, false);
+        });
+    </script>
+    <%-include('footer')%>

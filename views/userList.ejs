@@ -233,6 +233,8 @@
             });
             let desc = document.getElementById("emailtext");
             quill.on("text-change", () => {
+                 var delta = quill.getContents();
+                console.log(delta);
                 var text = quill.getText();
                 desc.value = text;
             })
@@ -294,6 +296,7 @@
                 });
             };
             function updateEdit(){
+             
                 $.ajax({
                     url: "/updateUser",
                     type: "POST",

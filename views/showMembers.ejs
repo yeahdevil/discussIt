@@ -1,0 +1,34 @@
+<%-include('header')%>
+<%if(data.role=="admin"){if(data.tempRole=="user"){%>
+<%-include('sidebarSwitch')%>
+<%}else{%>
+<%-include('sidebar')%>
+<%}}else if(data.role=="community builder" || data.role=="user"){%>
+<%-include('./communityBuilder/sidebar')%>
+<%}%>
+<%-include('navbar')%>
+<%-include("switchModal")%>
+<%-include('communityNav')%>
+<center>
+  <div class="text-info" style="background-color: #e3f2fd;margin:3rem;padding:1rem;">
+    <h3>Members in <%=community.communityName %>&nbsp;</h3><small>(Owned By : <%=community.communityOwner%>)</small>
+  </div>
+</center>
+<%if(community.communityUsers.length==0){%>
+<div class="card" style="margin:4rem">
+  <div class="card-header">
+    <center>
+      <p class="text-muted">No members to display</p>
+    </center>
+  </div>
+</div>
+
+<%}else{for(i=0;i<community.communityUsers.length;i++){%>
+<div class="card" style="margin:4rem">
+  <div class="card-body">
+    <img src="/<%= community.communityUsers[i].profile %>" style="height:50px;width:50px;border-radius:50%;">
+   &nbsp;&nbsp;<a href="/community/members/id/<%= community.communityUsers[i]._id %>" style="cursor:pointer"><strong class="text-info">Username : <%= community.communityUsers[i].username %></strong></a>
+  </div>
+</div>
+<%}}%>
+<%-include('footer')%>

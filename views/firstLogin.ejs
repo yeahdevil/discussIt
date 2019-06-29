@@ -3,10 +3,11 @@
 <%-include('sidebarSwitch')%>
 <%}else{%>
 <%-include('sidebar')%>
-<%}}else if(data.role=="community builder"){%>
+<%}}else if(data.role=="community builder" || data.role=="user"){%>
 <%-include('./communityBuilder/sidebar')%>
 <%}%>
 <%-include('navbar')%>
+ <%-include("switchModal")%>
 <div class="container-fluid">
 <div class="container" style="width:30%;">
       <br><br><br>

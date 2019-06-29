@@ -1,42 +1,52 @@
 <%-include('header')%>
 <%if(data.role=="admin"){%>
 <%-include('sidebarSwitch')%>
-<%}else if(data.role=="community builder"){%>
+<%}else if(data.role=="community builder" || data.role=="user"){%>
 <%-include('./communityBuilder/sidebar')%>
 <%}%>
-
 <%-include('navbar')%>
 <div class="container-fluid" style="margin:1rem">
 </div>
 <%-include('communityNav')%>
- <%-include("switchModal")%>  
-<div><center>
-<h3 class="text-info" style="background-color: #e3f2fd;margin:3rem;padding:1rem;"">Your Communities</h3></center>
-    <% if(communities=="notfound"){ %>
+<%-include("switchModal")%>
+<div id="div">
     <center>
-    <div class="container" style=" padding:1rem 3rem 1rem 3rem ;margin:3rem 0 3rem 0;">
-        <div class="card" >
-            <div class="card-body ">
-                <p class="card-text text-muted">You are currently not a part of any community</p>
+        <h3 class="text-info" style="background-color: #e3f2fd;margin:3rem;padding:1rem;"">Your Communities</h3></center>
+    <% if(communities.length==0){ %>
+    <center>
+    <div class=" container" style=" padding:1rem 3rem 1rem 3rem ;margin:3rem 0 3rem 0;">
+            <div class="card">
+                <div class="card-body ">
+                    <p class="card-text text-muted">You are currently not a part of any community</p>
+                </div>
+            </div>
+</div>
+</center>
+<% }else{%>
+<%for(i=0;i<communities.length;i++){if(communities[i].communityStatus=="activate"){%>
+<center>
+    <div class="container" style="padding:1rem 3rem 1rem 3rem ;margin:3rem 0 3rem 0;">
+        <div class="card" style="">
+            <div class="card-header">
+                <%if(communities[i].communityOwner==data.email){%>
+                <div class="communityOwner" style="float:left" role="alert">
+                    Owner
+                </div>
+                <%}%>
+                <a href="/community/profile/<%= communities[i]._id %>"><b class=" text-info" style="float:left">&nbsp;&nbsp;<%= communities[i].communityName %>&nbsp;&nbsp;</b></a>
+                <small class=" text-info" style="float:left">(Created On : <%= communities[i].communityDate %>)</small>
+                <a href="/communityViewer/members/<%= communities[i]._id %>" class=" text-info" style="float:right">members[<%=communities[i].communityUsers.length%>]</a>
+            </div>
+            <div class="card-body">
+                <img src="./images/community.png"
+                    style="height:5rem;width:5rem;float:left;border-style:solid;border:5;border-color:grey;'">
+                <p class="text-muted" style="">Description : <%= communities[i].communityDescription %></p>
+                <a href="/communityViewer/discussion/<%= communities[i]._id %>" class="btn btn-info" style="float:right">Discussions</a>
             </div>
         </div>
-    </div></center>
-    <% }else{%>
-    <%for(i=0;i<communities.length;i++){if(communities[i].communityStatus=="activate"){%>
-    <center><div class="container" style="padding:1rem 3rem 1rem 3rem ;margin:3rem 0 3rem 0;">
-    <div class="card" style="">
-        <div class="card-header">
-             <%= communities[i].communityName %>
-        </div>
-        <div class="card-body" >
-            <h5 class="card-title"></h5>
-            <p class="card-text"><%= communities[i].communityDescription %></p>
-            <a href="#" class="btn btn-info" style="float:right">view</a>
-        </div>
     </div>
-    </div>
-    </center>
-    <%}}%>
+</center>
+<%}}%>
 <%}%>
 </div>
 <%-include('footer')%>

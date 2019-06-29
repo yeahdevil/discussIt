@@ -1,0 +1,146 @@
+<%-include('header')%>
+<%if(data.role=="admin"){%>
+<%-include('sidebarSwitch')%>
+<%}else if(data.role=="community builder" || data.role=="user"){%>
+<%-include('./communityBuilder/sidebar')%>
+<%}%>
+<%-include('navbar')%>
+<div class="container-fluid" style="margin:1rem">
+</div>
+<%-include('communityNav')%>
+<%-include("switchModal")%>
+<center>
+        <h3 class="text-info" style="background-color: #e3f2fd;margin:3rem;padding:1rem;"">Discussions</h3></center>
+<div style="margin:1rem 2rem 2rem 2rem; ">
+<hr>
+<div id="tittleDiv"><img src="/./images/community.png" style="height:50px;width:50px;border-style:solid;border:5;border-color:grey;border-radius:50%;float:left;'">
+<h4 class="text-muted">&nbsp;&nbsp;Start Discussion</h4>   
+</div>
+<br>
+<form action="#">
+<div class="container" >
+<input autocomplete="off" type="text" class="form-control" required id="discussionTitle" onclick="displayform()" placeholder="Enter Discussion title">
+</div>
+<div class="container" style="display:none"  id="discussionForm"> 
+<br> 
+<input autocomplete="off" type="text" class="form-control" required id="discussionMessage" placeholder="Enter Discussion Message">
+<br>
+<button type="submit" id="btn" style="" onclick="postDiscussion('<%=community._id%>')" class="btn btn-warning">Post</button>
+</div>          
+<hr><br>
+</div>
+<%for(i=0;i<discussion.length;i++){%>
+<div class="container" id="'<%=discussion[i]._id%>'">
+<h3 class="font-weight-normal"><%=discussion[i].title %>
+<%if(discussion[i].userId==data._id){%>
+    <button style="float:right" class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" onclick="deleteDiscussion('<%=discussion[i]._id%>')" href="#" >Delete Post</a>
+<%}%>
+</h3>
+<small class="text-muted font-italic">posted by : <a href="/community/members/id/<%= discussion[i].userId %>" class="text-info"><%=discussion[i].userName%></a> on :<%=discussion[i].date%></small>
+<br><br>
+<p class="font-weight-light"><%=discussion[i].message %></p>
+<br>
+<a class="text-primary" style="cursor: pointer" onclick="comment('<%=discussion[i]._id %>')"><i class="far fa-comment-alt"></i> <%=discussion[i].comments.length %>&nbsp;comments</a>
+<div class="container"  style="display:none" id="<%=discussion[i]._id %>">
+<br>
+<input autocomplete="off" type="text" class="form-control" required id="comment_<%=discussion[i]._id %>" placeholder="Enter comment here">
+<br>
+<button type="button" class="btn btn-outline-warning"  onclick="postComment('<%=discussion[i]._id %>')" style="">post</button>
+<br><br>
+<%if(discussion[i].comments.length>0){for(j=0;j<discussion[i].comments.length;j++){%>
+<h6 class=""><a href="/community/members/id/<%= discussion[i].comments[j].commentuserId %>"><%= discussion[i].comments[j].commentuserName %> : <a> <br></h6>
+<p class=" font-weight-normal" style="margin-left:5rem"><%= discussion[i].comments[j].comment %> <%if(discussion[i].comments[j].commentuserId==data._id){%><a onclick="deleteComment('<%=discussion[i].comments[j].commentuserId%>','<%= discussion[i].comments[j].comment %>','<%= discussion[i]._id%>')" style="float:right" class="btn btn-link">delete</a><%}%></p>
+
+<hr>
+
+<%}}%>
+</div>
+</div>
+<hr><br>
+
+
+<%}%>
+<script>
+function deleteComment(id,comment,disId){
+    $.ajax({
+            url: "/deleteComment",
+                type: "POST",
+                data: {
+                    "disId":disId,
+                   "id": id,
+                   "comment":comment
+                },
+                success: (result) => {
+                  
+                }
+        });
+         window.location.reload();
+    }
+function comment(id){
+   if(document.getElementById(id).style.display == "none") document.getElementById(id).style.display = "";
+   else document.getElementById(id).style.display = "none"
+}
+function displayform(){
+    document.getElementById("discussionForm").style = "display:''";
+}
+function postDiscussion(id){
+    let title = document.getElementById("discussionTitle").value;
+    let message = document.getElementById("discussionMessage").value;
+    if(title && message)
+    {
+       
+        $.ajax({
+            url: "/addDiscussion",
+                type: "POST",
+                data: {
+                   "id": id,
+                  
+                   "title":title,
+                   "message":message
+                },
+                success: (result) => {
+                  
+                }
+        });
+         window.location.reload();
+    }
+    
+}
+function postComment(id){
+     let message = document.getElementById("comment_"+id).value;
+   if(message){
+    $.ajax({
+            url: "/addCommentOnDiscussion",
+                type: "POST",
+                data: {
+                   "id": id,
+                   "comment":message
+                },
+                success: (result) => {
+                  
+                }
+        });
+         window.location.reload();
+   }
+   else{
+       alert("Cannot post empty comment")
+   }
+    }
+
+function deleteDiscussion(id){
+$.ajax({
+            url: "/deleteDiscussion",
+                type: "POST",
+                data: {
+                   "id": id,
+                },
+                success: (result) => {
+                  console.log(result);
+                }
+        });
+         window.location.reload();
+    }
+</script>
+<%-include('footer')%>

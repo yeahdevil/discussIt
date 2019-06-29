@@ -1,0 +1,111 @@
+<%-include('header')%>
+<%if(data.role=="admin"){if(data.tempRole=="user"){%>
+<%-include('sidebarSwitch')%>
+<%}else{%>
+<%-include('sidebar')%>
+<%}}else if(data.role=="community builder" || data.role=="user"){%>
+<%-include('./communityBuilder/sidebar')%>
+<%}%>
+<%-include('navbar')%>
+<%-include("switchModal")%>
+<%-include('communityNav')%>
+<%if(requests.length==0){%>
+<div class="card" style="margin:4rem">
+  <div class="card-body text-info">
+   <center> No requests to display</center>
+  </div>
+</div>
+<%}else{for(i=0;i<requests.length;i++){%>
+<div class="card" style="margin:4rem" id="<%= requests[i]._id %>">
+  <div class="card-body">
+  <strong>Requested to join your <i><%= requests[i].communityId.communityName%></i> community</strong><br><br>
+  <img src = "<%=requests[i].userId.profile%>" style="float:left;height:7rem;width:7rem"><br>
+    <h3>&nbsp;&nbsp;&nbsp;&nbsp;<%=requests[i].userId.username%></h3>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-outline-success" onclick="accept('<%= requests[i]._id %>')" >Accept</button>
+    &nbsp;
+    <button type="button" class="btn btn-outline-danger" onclick="reject('<%= requests[i]._id %>')">Reject</button>
+  </div>
+</div>
+<%}}%>
+<script>
+function accept(id) {
+    var element = document.getElementById(id);
+     element.parentElement.removeChild(element); 
+     requestResponse(id,"accept");
+}
+function reject(id) {
+    var element = document.getElementById(id);
+    element.parentElement.removeChild(element); 
+    requestResponse(id,"reject");
+}
+
+function requestResponse(id,action){
+$.ajax({
+ url: "/requestAction",
+                type: "POST",
+                data: {
+                   "id": id,
+                   "action":action
+                },
+                success: (result) => {
+                    console.log(result);
+                }
+});
+}
+</script>
+
+<%-include('footer')%>

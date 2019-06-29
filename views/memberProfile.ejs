@@ -1,0 +1,66 @@
+<%-include('header')%>
+<%if(data.role=="admin"){if(data.tempRole=="user"){%>
+<%-include('sidebarSwitch')%>
+<%}else{%>
+<%-include('sidebar')%>
+<%}}else if(data.role=="community builder" || data.role=="user"){%>
+<%-include('./communityBuilder/sidebar')%>
+<%}%>
+<%-include('navbar')%>
+<%-include("switchModal")%>
+
+<br><br><br><br>
+    <div class="container shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="imgsize">
+               <img class="imgsize" src="/<%=user.profile%>">
+        </div>
+        <br><br><br>
+   <div class="row">
+       <div class="col">
+                <div class="card shadow mb-5 bg-white rounded">
+                        <div class="card-header">
+                          Name
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-text text-muted font-weight-normal"><%=user.username%></h5>
+                        </div>
+                    </div>
+        </div>
+       <div class="col"><div class="card shadow  mb-5 bg-white rounded">
+            <div class="card-header">
+                      Gender
+            </div>
+            <div class="card-body">
+              <h5 class="card-text text-muted font-weight-normal"><%=user.gender%></h5>
+            </div>
+          </div></div>
+   </div>
+   <div class="row">
+        <div class="col">
+                <div class="card shadow  mb-5 bg-white rounded" >
+                        <div class="card-header">
+                          D.O.B
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-text text-muted font-weight-normal"><%=user.dob%></h5>
+                        </div>
+                      </div>
+        </div>
+       <div class="col">
+            <div class="card shadow  mb-5 bg-white rounded">
+                    <div class="card-header">
+                      City
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-text text-muted font-weight-normal"><%=user.city%></h5>
+                    </div>
+                  </div>
+       </div>
+    </div>
+    </div>
+    <script>
+    $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+    });
+    </script>
+    <%-include("footer")%>

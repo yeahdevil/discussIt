@@ -1,0 +1,71 @@
+<%-include('header')%>
+<%if(data.role=="admin"){%>
+<%-include('sidebarSwitch')%>
+<%}else if(data.role=="community builder" || data.role=="user"){%>
+<%-include('./communityBuilder/sidebar')%>
+<%}%>
+<%-include('navbar')%>
+<div class="container-fluid" style="margin:1rem">
+</div>
+<%-include('communityNav')%>
+<%-include("switchModal")%>
+<center>
+    <h3 class="text-info" style="background-color: #e3f2fd;margin:3rem;padding:1rem;"><%=community.communityName%></h3>
+</center>
+
+<div style="margin:4rem">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title"><a href="/communityViewer/members/<%= community._id %>" class="text-info">Members</a>
+                &nbsp;<small class="mb-2 text-muted">(<%= community.communityUsers.length%>)</small></h5>
+            <p class="card-text"><%if(community.communityUsers.length==0){%>
+                No members to display
+                <%}else{if(community.communityUsers.length<4){a = community.communityUsers.length}else{a=4}for(i=0;i<a;i++){%>
+                <img src="/<%=community.communityUsers[i].profile%>"
+                    style='height:50px;width:50px;border-radius:50%;'>&nbsp;
+                <%}}%>
+            </p>
+            <a href="/communityViewer/members/<%= community._id %>" class="card-link">View All</a>
+        </div>
+    </div>
+    <div>
+
+
+        <div class="card" style="width: 18rem; margin-top:3rem">
+            <div class="card-body">
+                <h5 class="card-title text-info">Community Owner</h5>
+                <p class="card-text">
+                    <img src="/./images/community.png" style='height:50px;width:50px;border-radius:50%;'>&nbsp;
+                    <a href="#"><%=community.communityOwner%><a>
+                </p>
+            </div>
+        </div>
+        <div style="position:absolute;right:15rem;top:22rem;width:50%">
+        <div class="card">
+            <div class="card-header">
+             <center><strong class="font-weight-normal">  About Community </strong></center>
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p><%=community.communityDescription%></p>
+                    <footer class="blockquote-footer">Created on <cite title="Source Title"><%=community.communityDate%></cite>
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
+        <div class="container" style="margin-top:5rem">
+<center>
+        <ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link active" href="/communityViewer/discussion/<%= community._id %>">Discussions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/communityViewer/members/<%= community._id %>">Members</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/community/profile/<%= community._id %>">Profile</a>
+  </li>
+</ul>
+</center>
+</div>
+        <%-include("footer")%>
